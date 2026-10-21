@@ -102,8 +102,10 @@ async function cekPertandinganArashi() {
     description: m.description || ''
   }));
 
-  console.log('Pertandingan online:', dataOnline);
-  return dataOnline;
+ matches = dataOnline;
+render();
+console.log('Pertandingan online berhasil ditampilkan:', dataOnline);
+return dataOnline;
 }
 
 window.cekPertandinganArashi = cekPertandinganArashi;
