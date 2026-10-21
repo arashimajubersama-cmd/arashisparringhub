@@ -61,4 +61,38 @@ function joinMatch(id){let m=matches.find(x=>x.id===id);if(m.contact){let phone=
 document.getElementById("matchForm").addEventListener("submit",e=>{e.preventDefault();let item={id:Date.now(),type:document.getElementById("matchType").value,home:document.getElementById("teamName").value.trim(),away:"Cari lawan",venue:document.getElementById("venue").value.trim(),date:document.getElementById("date").value,time:document.getElementById("time").value,contact:document.getElementById("contact").value.trim(),status:"Mencari lawan"};matches.unshift(item);save();render();closeModal();e.target.reset();document.getElementById("matchlist").scrollIntoView({behavior:"smooth"})});
 render();
 </script>
-</body></html>
+<!-- Koneksi Supabase Arashi SparringHub -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const ARASHI_SUPABASE_URL =
+  'https://roxdvnhhkjtjeknazcvj.supabase.co';
+
+// Ganti teks ini dengan Publishable key milikmu.
+const ARASHI_SUPABASE_KEY = 'sb_publishable_tM1UmtxJQgiDsxJbtaMe3Q_09H6a1_M';
+
+const arashiSupabase = window.supabase.createClient(
+  ARASHI_SUPABASE_URL,
+  ARASHI_SUPABASE_KEY
+);
+
+// Tes koneksi dengan membaca pertandingan terbuka.
+async function cekPertandinganArashi() {
+  const { data, error } = await arashiSupabase
+    .from('matches')
+    .select('id, team_name, sport_type, match_date, match_time, city')
+    .eq('status', 'open')
+    .order('match_date', { ascending: true });
+
+  if (error) {
+    console.error('Gagal membaca pertandingan:', error.message);
+    return;
+  }
+
+  console.log('Koneksi berhasil. Data pertandingan:', data);
+}
+
+window.cekPertandinganArashi = cekPertandinganArashi;
+</script>
+</body>
+</html>
