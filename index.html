@@ -70,7 +70,7 @@ const ARASHI_SUPABASE_URL = 'https://roxdvnhhkjtjeknazcvj.supabase.co';
 // Ganti teks ini dengan Publishable key milikmu.
 const ARASHI_SUPABASE_KEY = 'sb_publishable_tM1UmtxJQgiDsxJbtaMe3Q_09H6a1_M';
 
-const arashiSupabase = window.supabase.createClient(
+ window.arashiSupabase = window.supabase.createClient(
   ARASHI_SUPABASE_URL,
   ARASHI_SUPABASE_KEY
 );
@@ -248,9 +248,12 @@ cekPertandinganArashi();
     await updateSession();
   });
 
-  client.auth.onAuthStateChange(function () {
+    client.auth.onAuthStateChange(function () {
     updateSession();
   });
- 
+
+  updateSession();
+})();
+</script>
 </body>
 </html>
