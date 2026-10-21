@@ -1,259 +1,126 @@
 <!doctype html>
 <html lang="id">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0d0e10">
-<title>Arashi SparringHub</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b0d">
+<title>ARASHI SparringHub</title>
 <style>
-:root{--bg:#0d0e10;--panel:#17191c;--panel2:#22252a;--line:#34383e;--text:#f0f1f2;--muted:#9a9fa6;--lime:#c3c7cc;--cyan:#9299a2;--orange:#b2b6bc}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#282c31 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:1180px;margin:auto;padding:20px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}.brand{display:flex;align-items:center;gap:12px}.logo{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--lime),var(--cyan));color:#111315;font-weight:1000;font-size:19px;box-shadow:0 0 28px #c3c7cc22}.brand strong{font-size:18px;letter-spacing:.3px}.brand small{display:block;color:var(--muted);font-size:12px}.pill{border:1px solid #41464d;border-radius:999px;padding:7px 11px;color:var(--lime);font-size:12px;background:#c3c7cc0c}.hero{padding:30px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(115deg,#24272b 0%,#17191c 60%,#202328 100%);position:relative;overflow:hidden;margin-bottom:22px}.hero:after{content:"";position:absolute;width:230px;height:230px;border:1px solid #c3c7cc24;border-radius:50%;right:-55px;top:-70px;box-shadow:0 0 0 28px #c3c7cc08,0 0 0 60px #c3c7cc05}.eyebrow{color:var(--lime);font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.05;max-width:650px;margin:12px 0}.hero p{color:#b4b8be;max-width:600px;margin:12px 0 22px}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:11px 15px;border-radius:12px;font-weight:750}.btn.primary{background:var(--lime);border-color:var(--lime);color:#111315}.btn:hover{filter:brightness(1.08)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}.stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:17px}.stat span{display:block;color:var(--muted);font-size:12px}.stat b{font-size:24px;display:block;margin-top:4px}.layout{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.section-head h2{font-size:18px;margin:0}.muted{color:var(--muted)}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.filter{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:7px 12px;font-size:12px}.filter.active{color:var(--lime);border-color:#626970;background:#c3c7cc0e}.match{padding:16px;border:1px solid var(--line);background:#131518;border-radius:16px;margin-bottom:10px}.matchtop{display:flex;justify-content:space-between;gap:10px;align-items:center}.tag{font-size:10px;letter-spacing:.7px;text-transform:uppercase;border-radius:6px;padding:5px 7px;background:#9299a212;color:var(--cyan);font-weight:800}.status{font-size:11px;color:var(--lime)}.teams{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:15px 0}.team{flex:1}.team:last-child{text-align:right}.team b{display:block;font-size:15px}.team small{color:var(--muted)}.vs{font-size:11px;color:#858b93;font-weight:900}.details{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:12px;padding-top:12px;border-top:1px solid #30343a}.matchfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px}.smallbtn{border:1px solid #555b63;background:#c3c7cc12;color:var(--lime);border-radius:9px;padding:8px 11px;font-weight:800;font-size:12px}.side .card{margin-bottom:14px}.field{display:grid;gap:6px;margin-bottom:12px}.field label{font-size:12px;color:var(--muted)}.field input,.field select,.field textarea{width:100%;background:#111316;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 11px;outline:none}.field input:focus,.field select:focus{border-color:#aeb3ba}.full{width:100%}.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}.foot{margin:24px 0 8px;text-align:center;color:#6f8492;font-size:11px}.notice{display:none;padding:10px 12px;border-radius:10px;background:#c3c7cc14;color:var(--lime);font-size:12px;margin-bottom:12px}.notice.show{display:block}.modal{display:none;position:fixed;inset:0;background:#03070bcc;z-index:5;align-items:center;justify-content:center;padding:16px}.modal.show{display:flex}.modalbox{width:min(480px,100%);background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px}.modalbox h2{margin-top:0}.close{float:right}.mobile-nav{display:none}
-@media(max-width:780px){.app{padding:14px}.top{margin-bottom:18px}.hero{padding:23px}.layout{grid-template-columns:1fr}.stats{gap:8px}.stat{padding:12px}.stat b{font-size:20px}.stat span{font-size:11px}.side{display:grid;grid-template-columns:1fr}.team b{font-size:13px}}
+:root{--bg:#090b0d;--panel:#14171a;--panel2:#1d2125;--line:#30363c;--text:#f4f5f6;--muted:#a1a7ad;--silver:#d7dbe0;--green:#b9e6c7;--radius:20px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:wait}.app{max-width:520px;min-height:100dvh;margin:auto;background:radial-gradient(ellipse at 50% -10%,#282e34 0,transparent 38%),var(--bg);padding:16px 16px 94px}.hidden{display:none!important}.brand{display:flex;align-items:center;gap:10px}.mark{width:42px;height:42px;border:1px solid #707780;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#f0f2f4,#777e86);color:#111;font-weight:1000;font-size:21px;clip-path:polygon(18% 0,100% 0,82% 100%,0 100%)}.brand b{font-size:17px;letter-spacing:.8px}.brand small{display:block;font-size:9px;letter-spacing:3px;color:#c4c8cc}.top{display:flex;align-items:center;justify-content:space-between;margin:5px 0 24px}.iconbtn{border:1px solid var(--line);background:var(--panel);color:white;border-radius:13px;width:42px;height:42px}.hero{border:1px solid #3a4046;border-radius:25px;overflow:hidden;padding:23px;background:linear-gradient(145deg,#22272c,#111315 70%);position:relative;margin-bottom:18px}.eyebrow{font-size:10px;letter-spacing:2px;color:#cbd0d5;font-weight:800}.hero h1{font-size:32px;line-height:1.08;margin:12px 0}.hero p{color:#b7bdc3;font-size:13px;margin:0 0 18px}.btn{border:1px solid #555c64;background:#24292e;color:#f5f6f7;border-radius:13px;padding:12px 15px;font-weight:750}.btn.primary{background:var(--silver);color:#111317;border-color:var(--silver)}.btn.full{width:100%}.row{display:flex;gap:10px}.row>*{flex:1}.search{display:flex;gap:8px;margin:18px 0}.search input{min-width:0;flex:1;background:#171a1e;border:1px solid #363c42;border-radius:14px;padding:13px;color:white}.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:23px}.cat{background:#191d21;border:1px solid #30363b;border-radius:15px;padding:13px 3px 10px;text-align:center;color:#dfe2e5;font-size:11px}.cat .emoji{display:block;font-size:22px;margin-bottom:6px}.cat.active{border-color:#aeb5bc;background:#2a3035}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:20px 0 12px}.sectionhead h2{font-size:18px;margin:0}.muted{color:var(--muted)}.textbtn{background:none;border:0;color:#d6dbe0;font-size:12px}.match{display:flex;gap:12px;background:var(--panel);border:1px solid #2d3338;border-radius:18px;padding:10px;margin-bottom:11px}.matchimg{width:100px;min-width:100px;border-radius:13px;background:linear-gradient(145deg,#444b52,#171a1d);display:grid;place-items:center;font-size:30px}.matchbody{min-width:0;flex:1}.tag{display:inline-block;border-radius:7px;background:#d8dce0;color:#151719;padding:4px 7px;font-size:9px;font-weight:900}.match h3{font-size:14px;margin:7px 0 4px}.match p{font-size:11px;color:#b8bec4;margin:4px 0}.status{display:inline-block;border-radius:20px;background:#d5d9dd;color:#111;padding:4px 9px;font-size:10px;font-weight:800}.matchbottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}.smallbtn{border:0;border-radius:10px;background:#d6dbe0;color:#121416;padding:8px 10px;font-size:11px;font-weight:800}.panel{background:var(--panel);border:1px solid #30363b;border-radius:18px;padding:16px;margin:13px 0}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;color:#c1c6cb}.field input,.field select,.field textarea{width:100%;border:1px solid #373e44;background:#0e1012;color:white;border-radius:12px;padding:12px;outline:none}.field textarea{min-height:90px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:#b9c0c7}.bottomnav{position:fixed;z-index:10;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);display:grid;grid-template-columns:repeat(5,1fr);background:#101215f5;border-top:1px solid #30353a;padding:8px 5px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(14px)}.navbtn{background:none;border:0;color:#9da4ab;font-size:10px;padding:3px 0}.navbtn span{display:block;font-size:20px;margin-bottom:2px}.navbtn.active{color:white}.navbtn.active span{filter:brightness(1.5)}.page{display:none}.page.active{display:block}.notice{font-size:12px;margin:10px 0;overflow-wrap:anywhere}.notice.ok{color:#b9e6c7}.notice.bad{color:#ffb6ac}.screen{min-height:78dvh;display:flex;flex-direction:column;justify-content:center}.splashart{height:34vh;min-height:200px;border-radius:20px;margin:20px 0;background:radial-gradient(ellipse at 50% 65%,#727b84 0,#30363d 28%,#111315 68%);display:flex;align-items:center;justify-content:center;flex-direction:column;border:1px solid #343a40}.bigmark{font-size:100px;font-weight:1000;line-height:1;letter-spacing:-12px;color:#dfe2e5;text-shadow:0 10px 30px #000}.splashart strong{letter-spacing:5px;font-size:16px;margin-top:10px}.splashart small{letter-spacing:3px;color:#b7bdc3;font-size:10px}.screen h1{font-size:25px;margin:0 0 6px}.screen p{color:#b2b8be;font-size:13px}.screen .bottomcopy{text-align:center;color:#7f878f;font-size:10px;margin-top:28px}.profilehead{display:flex;align-items:center;gap:13px}.avatar{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#30363c;font-size:24px}.listrow{padding:14px 0;border-bottom:1px solid #2b3035;display:flex;justify-content:space-between;gap:10px}.listrow:last-child{border:0}.pill{border:1px solid #424950;border-radius:30px;padding:5px 9px;font-size:11px;color:#d1d5d9}
+@media(min-width:700px){body{background:#050607}.app{border-left:1px solid #24282d;border-right:1px solid #24282d}}
 </style>
 </head>
 <body>
 <div class="app">
-<header class="top">
- <div class="brand"><div class="logo">AS</div><div><strong>ARASHI <span style="color:var(--lime)">SPARRINGHUB</span></strong><small>Temukan lawan. Atur pertandingan. Gaskeun.</small></div></div>
- <span class="pill">● MATCH CENTER</span>
-</header>
-<section class="hero">
- <div class="eyebrow">COMMUNITY • COMPETITION • CONNECTION</div>
- <h1>Waktunya cari lawan<br><span style="color:var(--lime)">yang sepadan.</span></h1>
- <p>Hubungkan tim futsal, mini soccer, dan turnamen antar kampung dalam satu hub. Cari sparring, atur jadwal, dan bangun rivalitas yang sehat.</p>
- <div class="actions"><button class="btn primary" onclick="openModal()">＋ Buat Sparring</button><button class="btn" onclick="document.getElementById('matchlist').scrollIntoView({behavior:'smooth'})">Jelajahi Match ↘</button></div>
+<section id="welcome" class="screen">
+ <div class="brand"><div class="mark">A</div><div><b>ARASHI</b><small>SPARRINGHUB</small></div></div>
+ <div class="splashart"><div class="bigmark">A</div><strong>ARASHI</strong><small>SPARRINGHUB</small><p>MORE THAN A GAME</p></div>
+ <h1>Temukan lawan. Bentuk tim.</h1><p>Futsal · Mini Soccer · Antar Kampung</p>
+ <button class="btn primary full" onclick="showAuth('login')">Masuk</button>
+ <button class="btn full" style="margin-top:10px" onclick="showAuth('register')">Daftar Akun</button>
+ <div class="bottomcopy">Bersama komunitas, lebih banyak pertandingan.</div>
 </section>
-<div class="stats">
- <div class="stat"><span>Jadwal terbuka</span><b id="statOpen">03</b></div><div class="stat"><span>Cabang permainan</span><b>03</b></div><div class="stat"><span>Status hub</span><b style="color:var(--lime);font-size:19px">READY <span style="font-size:12px">●</span></b></div>
+
+<section id="authScreen" class="screen hidden">
+ <div class="brand"><div class="mark">A</div><div><b>ARASHI</b><small>SPARRINGHUB</small></div></div>
+ <div class="panel" style="margin-top:25px"><h2 id="authTitle">Masuk Akun</h2><p class="muted" style="font-size:13px">Masuk untuk bergabung dengan komunitas sparring.</p>
+ <div id="nameField" class="field"><label>Nama lengkap (untuk daftar)</label><input id="arashi-name" autocomplete="name" placeholder="Nama kamu"></div>
+ <div class="field"><label>Email</label><input id="arashi-email" type="email" autocomplete="email" placeholder="nama@email.com"></div>
+ <div class="field"><label>Kata sandi (minimal 6 karakter)</label><input id="arashi-password" type="password" minlength="6" autocomplete="current-password" placeholder="Masukkan kata sandi"></div>
+ <button id="arashi-register" class="btn primary full" onclick="registerAccount()">Daftar Akun</button>
+ <button id="arashi-login" class="btn full" style="margin-top:9px" onclick="loginAccount()">Masuk</button>
+ <button class="textbtn" style="margin-top:14px" onclick="showWelcome()">← Kembali</button><div id="authMessage" class="notice"></div>
+ </div>
+</section>
+
+<section id="homePage" class="page">
+ <header class="top"><div class="brand"><div class="mark">A</div><div><b>ARASHI</b><small>SPARRINGHUB</small></div></div><button class="iconbtn" onclick="showPage('profilePage')" aria-label="Notifikasi">♧</button></header>
+ <h2 style="margin:0 0 4px">Halo, Pemain! 👋</h2><p class="muted" style="font-size:13px;margin:0">Temukan lawan sparring, bentuk tim, dan bertanding kapan saja.</p>
+ <div class="search"><input id="searchInput" placeholder="Cari tim, lokasi, atau pertandingan..." oninput="renderMatches()"><button class="iconbtn" onclick="renderMatches()">⌕</button></div>
+ <div class="categories"><button class="cat active" data-category="Semua" onclick="setCategory('Semua',this)"><span class="emoji">♧</span>Semua</button><button class="cat" data-category="Futsal" onclick="setCategory('Futsal',this)"><span class="emoji">⚽</span>Futsal</button><button class="cat" data-category="Mini Soccer" onclick="setCategory('Mini Soccer',this)"><span class="emoji">◉</span>Mini Soccer</button><button class="cat" data-category="Antar Kampung" onclick="setCategory('Antar Kampung',this)"><span class="emoji">♟</span>Antar Kampung</button></div>
+ <div class="sectionhead"><h2>Pertandingan Terdekat</h2><button class="textbtn" onclick="showPage('matchesPage')">Lihat Semua →</button></div>
+ <div id="homeMatches"></div>
+ <div class="sectionhead"><h2>Akses Cepat</h2></div><div class="row"><button class="btn" onclick="showPage('createPage')">＋ Buat Pertandingan</button><button class="btn" onclick="showPage('teamsPage')">♧ Cari Tim</button></div>
+</section>
+
+<section id="matchesPage" class="page">
+ <div class="sectionhead"><h2>Pertandingan</h2><button class="btn primary" onclick="showPage('createPage')">＋ Buat</button></div>
+ <div class="categories"><button class="cat active" data-category="Semua" onclick="setCategory('Semua',this)">Semua</button><button class="cat" data-category="Futsal" onclick="setCategory('Futsal',this)">Futsal</button><button class="cat" data-category="Mini Soccer" onclick="setCategory('Mini Soccer',this)">Mini Soccer</button><button class="cat" data-category="Antar Kampung" onclick="setCategory('Antar Kampung',this)">Antar Kampung</button></div>
+ <div id="allMatches"></div>
+</section>
+
+<section id="createPage" class="page">
+ <div class="sectionhead"><h2>Buat Pertandingan</h2><span class="pill">POST MATCH</span></div>
+ <div class="panel"><form id="matchForm">
+ <div class="field"><label>Jenis Pertandingan</label><select id="matchType"><option>Futsal</option><option>Mini Soccer</option><option>Antar Kampung</option></select></div>
+ <div class="field"><label>Judul / Nama Tim</label><input id="teamName" required placeholder="Contoh: Cari Lawan Sparring Futsal"></div>
+ <div class="field"><label>Tanggal</label><input id="matchDate" type="date" required></div>
+ <div class="field"><label>Jam mulai</label><input id="matchTime" type="time" required></div>
+ <div class="field"><label>Lokasi / Lapangan</label><input id="matchLocation" required placeholder="Nama lapangan atau kecamatan"></div>
+ <div class="field"><label>Kota / Kecamatan</label><input id="matchCity" placeholder="Contoh: Cibitung, Bekasi"></div>
+ <div class="field"><label>Jumlah pemain / format</label><select id="matchFormat"><option>5 vs 5</option><option>7 vs 7</option><option>11 vs 11</option></select></div>
+ <div class="field"><label>Kontak WhatsApp</label><input id="matchContact" required placeholder="08xxxxxxxxxx"></div>
+ <div class="field"><label>Deskripsi (opsional)</label><textarea id="matchDescription" placeholder="Level tim, biaya lapangan, dan detail lainnya"></textarea></div>
+ <button id="publishButton" class="btn primary full" type="submit">Publikasikan Pertandingan</button><div id="createMessage" class="notice"></div>
+ </form></div>
+</section>
+
+<section id="teamsPage" class="page">
+ <div class="sectionhead"><h2>Tim Saya</h2><button class="btn primary" onclick="alert('Fitur pengelolaan tim akan ditambahkan pada tahap berikutnya.')">＋ Buat Tim</button></div>
+ <div class="panel"><div class="profilehead"><div class="avatar">⚽</div><div><b id="teamPlaceholder">Tim ARASHI</b><div class="muted" style="font-size:12px">Tambahkan tim dan anggota pada pengembangan berikutnya.</div></div></div></div>
+ <div class="panel"><h3>Cari Tim</h3><p class="muted" style="font-size:13px">Tim yang memasang pertandingan terbuka akan terlihat pada menu Pertandingan.</p><button class="btn full" onclick="showPage('matchesPage')">Jelajahi Pertandingan</button></div>
+</section>
+
+<section id="messagesPage" class="page">
+ <div class="sectionhead"><h2>Pesan</h2></div>
+ <div class="panel"><div class="avatar">✉</div><h3>Komunikasi antar tim</h3><p class="muted" style="font-size:13px">Pesan dalam aplikasi belum aktif. Untuk posting yang memiliki nomor WhatsApp, kamu dapat menghubungi penyelenggara melalui tombol Tantang Tim.</p><button class="btn primary full" onclick="showPage('matchesPage')">Cari pertandingan</button></div>
+</section>
+
+<section id="profilePage" class="page">
+ <div class="sectionhead"><h2>Profil</h2></div>
+ <div class="panel"><div class="profilehead"><div class="avatar">👤</div><div><b id="profileName">Pemain ARASHI</b><div id="profileEmail" class="muted" style="font-size:12px">Akun belum dimuat</div></div></div><button class="btn full" style="margin-top:16px" onclick="signOut()">Keluar dari akun</button><div id="profileMessage" class="notice"></div></div>
+ <div class="panel"><div class="listrow"><span>Tim Saya</span><button class="textbtn" onclick="showPage('teamsPage')">Buka →</button></div><div class="listrow"><span>Pertandingan Saya</span><button class="textbtn" onclick="showPage('matchesPage')">Buka →</button></div><div class="listrow"><span>Tentang ARASHI SparringHub</span><span>›</span></div></div>
+</section>
 </div>
-<div class="layout">
- <main id="matchlist">
-  <div class="section-head"><h2>⚡ Sparring terdekat</h2><span class="muted" id="matchCount">3 pertandingan</span></div>
-  <div class="filters"><button class="filter active" data-filter="Semua">Semua</button><button class="filter" data-filter="Futsal">Futsal</button><button class="filter" data-filter="Mini Soccer">Mini Soccer</button><button class="filter" data-filter="Antar Kampung">Antar Kampung</button></div>
-  <div id="matches"></div>
- </main>
- <aside class="side">
-  <div class="card"><div class="section-head"><h2>🎯 Quick Match</h2><span class="tag">CEPAT</span></div><p class="muted" style="font-size:13px;margin-top:0">Isi kebutuhan tim dan siapkan posting sparring dalam hitungan menit.</p><div class="field"><label>Jenis pertandingan</label><select id="quickType"><option>Futsal</option><option>Mini Soccer</option><option>Antar Kampung</option></select></div><div class="field"><label>Area / kecamatan</label><input id="quickArea" placeholder="Contoh: Cibitung"></div><button class="btn primary full" onclick="quickCreate()">Cari / Buat Match</button></div>
-  <div class="card"><div class="section-head"><h2>🧭 Alur Hub</h2></div><p class="muted" style="font-size:13px">01 — Buat posting sparring<br>02 — Tim lain menghubungi penyelenggara<br>03 — Konfirmasi venue & waktu<br>04 — Main fair, update hasil</p><div style="height:1px;background:var(--line);margin:13px 0"></div><span class="tag">SPORTSMANSHIP FIRST</span></div>
- </aside>
-</div>
-<div class="foot">ARASHI SPARRINGHUB · BUILT FOR LOCAL FOOTBALL CULTURE<br>Prototype awal • Data tersimpan lokal di browser perangkat ini</div>
-</div>
-<div class="modal" id="modal"><div class="modalbox"><button class="btn close" onclick="closeModal()">✕</button><div class="eyebrow">POST MATCH</div><h2>Buat sparring baru</h2><div id="formNotice" class="notice"></div>
- <form id="matchForm"><div class="field"><label>Nama tim kamu</label><input id="teamName" required placeholder="Contoh: Garuda FC"></div><div class="field"><label>Jenis pertandingan</label><select id="matchType"><option>Futsal</option><option>Mini Soccer</option><option>Antar Kampung</option></select></div><div class="field"><label>Area / venue</label><input id="venue" required placeholder="Nama lapangan, kecamatan"></div><div class="field"><label>Tanggal</label><input id="date" type="date" required></div><div class="field"><label>Jam mulai</label><input id="time" type="time" required></div><div class="field"><label>Kontak penyelenggara (WhatsApp)</label><input id="contact" required placeholder="08xxxxxxxxxx"></div><button class="btn primary full" type="submit">Publikasikan sparring</button></form>
- </div></div>
-<script>
-const initial=[
-{id:1,type:"Futsal",home:"Cibitung United",away:"Cari lawan",venue:"Arena Futsal • Cibitung",date:"2026-10-24",time:"20:00",contact:"",status:"Mencari lawan"},
-{id:2,type:"Mini Soccer",home:"Bekasi Muda FC",away:"Open Challenge",venue:"Mini Soccer • Tambun",date:"2026-10-25",time:"16:00",contact:"",status:"Slot tersedia"},
-{id:3,type:"Antar Kampung",home:"Kampung Utara FC",away:"Tim penantang",venue:"Lapangan warga • Setu",date:"2026-10-26",time:"15:30",contact:"",status:"Mencari lawan"}
-];
-let matches=JSON.parse(localStorage.getItem("arashiMatches")||"null")||initial;
-let activeFilter="Semua";
-function save(){localStorage.setItem("arashiMatches",JSON.stringify(matches))}
-function fmtDate(d){if(!d)return "Tanggal menyusul";return new Date(d+"T12:00:00").toLocaleDateString("id-ID",{day:"numeric",month:"short",year:"numeric"})}
-function render(){let list=matches.filter(m=>activeFilter==="Semua"||m.type===activeFilter);document.getElementById("matches").innerHTML=list.length?list.map(m=>`<article class="match"><div class="matchtop"><span class="tag">${m.type}</span><span class="status">● ${m.status||"Terbuka"}</span></div><div class="teams"><div class="team"><b>${esc(m.home)}</b><small>Tuan rumah</small></div><span class="vs">VS</span><div class="team"><b>${esc(m.away||"Cari lawan")}</b><small>Tantangan terbuka</small></div></div><div class="details"><span>◷ ${fmtDate(m.date)} · ${esc(m.time||"Jam TBD")}</span><span>⌖ ${esc(m.venue)}</span></div><div class="matchfoot"><span class="muted" style="font-size:11px">#ARASHI${String(m.id).padStart(3,"0")}</span><button class="smallbtn" onclick="joinMatch(${m.id})">Tantang tim ↗</button></div></article>`).join(""):'<div class="empty">Belum ada pertandingan untuk kategori ini.</div>';document.getElementById("matchCount").textContent=list.length+" pertandingan";document.getElementById("statOpen").textContent=String(matches.length).padStart(2,"0")}
-function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");activeFilter=b.dataset.filter;render()}));
-function openModal(type){if(type)document.getElementById("matchType").value=type;document.getElementById("modal").classList.add("show")}
-function closeModal(){document.getElementById("modal").classList.remove("show")}
-function quickCreate(){document.getElementById("matchType").value=document.getElementById("quickType").value;let area=document.getElementById("quickArea").value.trim();if(area)document.getElementById("venue").value=area;openModal()}
-function joinMatch(id){let m=matches.find(x=>x.id===id);if(m.contact){let phone=m.contact.replace(/\D/g,"").replace(/^0/,"62");location.href=`https://wa.me/${phone}?text=${encodeURIComponent("Halo, saya tertarik menantang "+m.home+" untuk sparring "+m.type+". Apakah jadwal masih tersedia?")}`}else alert("Kontak penyelenggara belum dicantumkan pada posting contoh ini. Buat posting sendiri atau tunggu detail kontak tim.");}
-document.getElementById("matchForm").addEventListener("submit",e=>{e.preventDefault();let item={id:Date.now(),type:document.getElementById("matchType").value,home:document.getElementById("teamName").value.trim(),away:"Cari lawan",venue:document.getElementById("venue").value.trim(),date:document.getElementById("date").value,time:document.getElementById("time").value,contact:document.getElementById("contact").value.trim(),status:"Mencari lawan"};matches.unshift(item);save();render();closeModal();e.target.reset();document.getElementById("matchlist").scrollIntoView({behavior:"smooth"})});
-render();
-</script>
-<!-- Koneksi Supabase Arashi SparringHub -->
+<nav id="bottomNav" class="bottomnav hidden">
+ <button class="navbtn active" data-page="homePage" onclick="showPage('homePage',this)"><span>⌂</span>Beranda</button>
+ <button class="navbtn" data-page="matchesPage" onclick="showPage('matchesPage',this)"><span>⌕</span>Cari</button>
+ <button class="navbtn" data-page="createPage" onclick="showPage('createPage',this)"><span>⊕</span>Buat</button>
+ <button class="navbtn" data-page="messagesPage" onclick="showPage('messagesPage',this)"><span>☏</span>Pesan</button>
+ <button class="navbtn" data-page="profilePage" onclick="showPage('profilePage',this)"><span>♙</span>Profil</button>
+</nav>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-const ARASHI_SUPABASE_URL = 'https://roxdvnhhkjtjeknazcvj.supabase.co';
-
-// Ganti teks ini dengan Publishable key milikmu.
-const ARASHI_SUPABASE_KEY = 'sb_publishable_tM1UmtxJQgiDsxJbtaMe3Q_09H6a1_M';
-
- window.arashiSupabase = window.supabase.createClient(
-  ARASHI_SUPABASE_URL,
-  ARASHI_SUPABASE_KEY
-);
-
-// Tes koneksi dengan membaca pertandingan terbuka.
-async function cekPertandinganArashi() {
-  const { data, error } = await arashiSupabase
-    .from('matches')
-    .select('*')
-    .eq('status', 'open')
-    .order('match_date', { ascending: true });
-
-  if (error) {
-    console.error('Gagal membaca pertandingan:', error.message);
-    return;
-  }
-
-  const dataOnline = (data || []).map((m, index) => ({
-    id: m.id || index + 1,
-    type: m.sport_type || 'Futsal',
-    home: m.team_name,
-    away: 'Cari Lawan',
-    venue: m.location || '',
-    city: m.city || '',
-    date: m.match_date,
-    time: m.match_time,
-    contact: m.contact_whatsapp || '',
-    description: m.description || ''
-  }));
-
- matches = dataOnline;
-render();
-console.log('Pertandingan online berhasil ditampilkan:', dataOnline);
-return dataOnline;
-}
-
-window.cekPertandinganArashi = cekPertandinganArashi;
-cekPertandinganArashi();
-</script>
-<div id="arashi-auth" style="max-width:420px;margin:24px auto;padding:22px;background:#17191c;border:1px solid #34383e;border-radius:18px;color:#f0f1f2;font-family:Arial,sans-serif">
-  <h2 style="margin-top:0">ARASHI <span style="color:#a9afb6">ACCOUNT</span></h2>
-  <p style="color:#a9afb6">Masuk atau buat akun untuk bergabung dengan komunitas sparring.</p><label for="arashi-name">Nama lengkap (untuk daftar)</label>
-<input id="arashi-name" autocomplete="name" placeholder="Nama kamu" style="box-sizing:border-box;width:100%;padding:12px;margin:7px 0 14px;background:#22252a;border:1px solid #41464d;border-radius:9px;color:white">
-
-<label for="arashi-email">Email</label>
-<input id="arashi-email" type="email" autocomplete="email" placeholder="nama@email.com" style="box-sizing:border-box;width:100%;padding:12px;margin:7px 0 14px;background:#22252a;border:1px solid #41464d;border-radius:9px;color:white">
-
-<label for="arashi-password">Kata sandi (minimal 6 karakter)</label>
-<input id="arashi-password" type="password" autocomplete="current-password" minlength="6" placeholder="Masukkan kata sandi" style="box-sizing:border-box;width:100%;padding:12px;margin:7px 0 16px;background:#22252a;border:1px solid #41464d;border-radius:9px;color:white">
-
-<button id="arashi-register" type="button" style="width:100%;padding:13px;margin-bottom:9px;background:#d5d9de;color:#17191c;border:0;border-radius:9px;font-weight:bold">Daftar Akun</button>
-<button id="arashi-login" type="button" style="width:100%;padding:13px;background:#292d32;color:white;border:1px solid #555b63;border-radius:9px;font-weight:bold">Login</button>
-<button id="arashi-logout" type="button" hidden style="width:100%;padding:12px;margin-top:9px;background:#292d32;color:white;border:1px solid #555b63;border-radius:9px">Logout</button>
-
-  <p id="arashi-auth-message" role="status" aria-live="polite" style="line-height:1.5;overflow-wrap:anywhere"></p>
-</div><script>
-(function () {
-  const box = document.getElementById('arashi-auth');
-  if (!box || !window.arashiSupabase) {
-    console.error('Koneksi Supabase belum tersedia.');
-    return;
-  }
-
-  const client = window.arashiSupabase;
-  const message = document.getElementById('arashi-auth-message');
-  const nameInput = document.getElementById('arashi-name');
-  const emailInput = document.getElementById('arashi-email');
-  const passwordInput = document.getElementById('arashi-password');
-  const registerButton = document.getElementById('arashi-register');
-  const loginButton = document.getElementById('arashi-login');
-  const logoutButton = document.getElementById('arashi-logout');
-
-  function showMessage(text, ok) {
-    message.textContent = text;
-    message.style.color = ok ? '#b8d9c2' : '#ffb4a9';
-  }
-
-  async function updateSession() {
-    const { data, error } = await client.auth.getSession();
-    if (error) {
-      showMessage('Tidak dapat memeriksa sesi. Coba muat ulang halaman.', false);
-      return;
-    }
-
-    const user = data.session && data.session.user;
-    logoutButton.hidden = !user;
-    registerButton.hidden = !!user;
-    loginButton.hidden = !!user;
-    nameInput.parentElement.style.display = user ? 'none' : '';
-    passwordInput.autocomplete = user ? 'off' : 'current-password';
-
-    if (user) {
-      showMessage('Login berhasil: ' + user.email, true);
-    }
-  }
-
-  registerButton.addEventListener('click', async function () {
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
-
-    if (!name || !email || password.length < 6) {
-      showMessage('Isi nama, email, dan kata sandi minimal 6 karakter.', false);
-      return;
-    }
-
-    registerButton.disabled = true;
-    showMessage('Mendaftarkan akun...', true);
-
-    try {
-      const { data, error } = await client.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-          data: { full_name: name },
-          emailRedirectTo: window.location.origin + window.location.pathname
-        }
-      });
-
-      if (error) throw error;
-
-      if (data.session) {
-        const { error: profileError } = await client.from('profiles').upsert({
-          id: data.user.id,
-          full_name: name
-        });
-        if (profileError) console.error('Profil belum tersimpan:', profileError.message);
-        showMessage('Pendaftaran berhasil. Kamu sudah masuk.', true);
-      } else {
-        showMessage('Pendaftaran diterima. Periksa email untuk konfirmasi sebelum login.', true);
-      }
-
-      await updateSession();
-    } catch (error) {
-      showMessage('Pendaftaran gagal: ' + error.message, false);
-    } finally {
-      registerButton.disabled = false;
-    }
-  });
-
-  loginButton.addEventListener('click', async function () {
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
-
-    if (!email || !password) {
-      showMessage('Isi email dan kata sandi terlebih dahulu.', false);
-      return;
-    }
-
-    loginButton.disabled = true;
-    showMessage('Memeriksa akun...', true);
-
-    try {
-      const { error } = await client.auth.signInWithPassword({
-        email: email,
-        password: password
-      });
-      if (error) throw error;
-      await updateSession();
-    } catch (error) {
-      showMessage('Login gagal: ' + error.message, false);
-    } finally {
-      loginButton.disabled = false;
-    }
-  });
-
-  logoutButton.addEventListener('click', async function () {
-    const { error } = await client.auth.signOut();
-    if (error) {
-      showMessage('Logout gagal: ' + error.message, false);
-      return;
-    }
-    passwordInput.value = '';
-    showMessage('Kamu sudah logout.', true);
-    await updateSession();
-  });
-
-    client.auth.onAuthStateChange(function () {
-    updateSession();
-  });
-
-  updateSession();
-})();
+const ARASHI_SUPABASE_URL='https://roxdvnhhkjtjeknazcvj.supabase.co';
+const ARASHI_SUPABASE_KEY='sb_publishable_tM1UmtxJQgiDsxJbtaMe3Q_09H6a1_M';
+window.arashiSupabase=window.supabase.createClient(ARASHI_SUPABASE_URL,ARASHI_SUPABASE_KEY);
+const client=window.arashiSupabase;
+let currentUser=null, category='Semua', matches=[];
+const sampleMatches=[
+{id:'sample-1',type:'Futsal',home:'Cari Lawan Sparring',venue:'GOR Futsal Cibitung',date:'2026-10-24',time:'19:00',status:'Terbuka',format:'5 vs 5',contact:''},
+{id:'sample-2',type:'Mini Soccer',home:'Sparring Mini Soccer',venue:'Lapangan Grand Wisata',date:'2026-10-25',time:'16:00',status:'Terbuka',format:'7 vs 7',contact:''},
+{id:'sample-3',type:'Antar Kampung',home:'Antar Kampung Sukatani',venue:'Lapangan Desa Sukatani',date:'2026-10-26',time:'15:30',status:'Terbuka',format:'11 vs 11',contact:''}
+];
+function el(id){return document.getElementById(id)}
+function showNotice(id,text,ok){const n=el(id);n.textContent=text;n.className='notice '+(ok?'ok':'bad')}
+function showWelcome(){el('authScreen').classList.add('hidden');el('welcome').classList.remove('hidden')}
+function showAuth(mode){el('welcome').classList.add('hidden');el('authScreen').classList.remove('hidden');el('authTitle').textContent=mode==='register'?'Daftar Akun':'Masuk Akun';el('nameField').classList.toggle('hidden',mode!=='register');el('arashi-register').classList.toggle('hidden',mode!=='register');el('arashi-login').classList.toggle('hidden',mode==='register');el('authMessage').textContent=''}
+function showApp(){el('welcome').classList.add('hidden');el('authScreen').classList.add('hidden');el('bottomNav').classList.remove('hidden');showPage('homePage');el('profileEmail').textContent=currentUser?.email||'';el('profileName').textContent=currentUser?.user_metadata?.full_name||'Pemain ARASHI';loadMatches()}
+function showPage(id,button){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'})}
+async function registerAccount(){const name=el('arashi-name').value.trim(),email=el('arashi-email').value.trim(),password=el('arashi-password').value;if(!name||!email||password.length<6){showNotice('authMessage','Isi nama, email, dan kata sandi minimal 6 karakter.',false);return}el('arashi-register').disabled=true;try{const {data,error}=await client.auth.signUp({email,password,options:{data:{full_name:name},emailRedirectTo:location.origin+location.pathname}});if(error)throw error;if(data.session){currentUser=data.user;showApp();}else showNotice('authMessage','Pendaftaran diterima. Periksa email untuk konfirmasi sebelum login.',true)}catch(e){showNotice('authMessage','Pendaftaran gagal: '+e.message,false)}finally{el('arashi-register').disabled=false}}
+async function loginAccount(){const email=el('arashi-email').value.trim(),password=el('arashi-password').value;if(!email||!password){showNotice('authMessage','Isi email dan kata sandi terlebih dahulu.',false);return}el('arashi-login').disabled=true;try{const {data,error}=await client.auth.signInWithPassword({email,password});if(error)throw error;currentUser=data.user;showApp()}catch(e){showNotice('authMessage','Login gagal: '+e.message,false)}finally{el('arashi-login').disabled=false}}
+async function signOut(){const {error}=await client.auth.signOut();if(error){showNotice('profileMessage','Logout gagal: '+error.message,false);return}currentUser=null;el('bottomNav').classList.add('hidden');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));el('welcome').classList.remove('hidden')}
+function setCategory(c,button){category=c;document.querySelectorAll('.cat').forEach(b=>b.classList.toggle('active',b.dataset.category===c));renderMatches()}
+function fmtDate(d){if(!d)return'Tanggal menyusul';return new Date(d+'T12:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'short'})}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function matchCard(m){return `<article class="match"><div class="matchimg">${m.type==='Futsal'?'⚽':m.type==='Mini Soccer'?'◉':'♟'}</div><div class="matchbody"><span class="tag">${esc(m.type||'Futsal')}</span><h3>${esc(m.home||'Cari lawan sparring')}</h3><p>◷ ${fmtDate(m.date)}${m.time?', '+esc(m.time):''}</p><p>⌖ ${esc(m.venue||m.location||'Lokasi belum diisi')}</p><p>♧ ${esc(m.format||'5 vs 5')}</p><div class="matchbottom"><span class="status">${esc(m.status||'Terbuka')}</span><button class="smallbtn" onclick="challengeMatch('${String(m.id).replace(/'/g,'')}')">Tantang Tim</button></div></div></article>`}
+function renderMatches(){const query=(el('searchInput')?.value||'').toLowerCase();const list=matches.filter(m=>(category==='Semua'||m.type===category)&&[m.home,m.venue,m.type,m.city].join(' ').toLowerCase().includes(query));const cards=list.map(matchCard).join('')||'<div class="panel muted">Belum ada pertandingan pada kategori ini.</div>';el('homeMatches').innerHTML=cards;el('allMatches').innerHTML=cards}
+async function loadMatches(){matches=sampleMatches.slice();renderMatches();const {data,error}=await client.from('matches').select('*').eq('status','open').order('match_date',{ascending:true});if(error){console.warn('Data pertandingan online belum dapat dibaca:',error.message);return}if(data&&data.length){matches=data.map(m=>({id:m.id,type:m.sport_type||'Futsal',home:m.team_name||'Cari Lawan',venue:m.location||'',city:m.city||'',date:m.match_date,time:m.match_time,contact:m.contact_whatsapp||'',description:m.description||'',format:m.match_format||'5 vs 5',status:'Terbuka'}));renderMatches()}}
+function challengeMatch(id){const m=matches.find(x=>String(x.id)===String(id));if(!m)return;if(m.contact){const phone=m.contact.replace(/\D/g,'').replace(/^0/,'62');location.href='https://wa.me/'+phone+'?text='+encodeURIComponent('Halo, saya tertarik menantang '+m.home+' untuk sparring '+m.type+'. Apakah jadwal masih tersedia?')}else alert('Nomor WhatsApp belum tersedia pada pertandingan ini.')}
+el('matchForm').addEventListener('submit',async e=>{e.preventDefault();if(!currentUser){showNotice('createMessage','Silakan login terlebih dahulu.',false);return}const item={sport_type:el('matchType').value,team_name:el('teamName').value.trim(),location:el('matchLocation').value.trim(),city:el('matchCity').value.trim(),match_date:el('matchDate').value,match_time:el('matchTime').value,contact_whatsapp:el('matchContact').value.trim(),description:(el('matchDescription').value.trim()+' | Format: '+el('matchFormat').value).trim(),status:'open',created_by:currentUser.id};el('publishButton').disabled=true;try{const {data,error}=await client.from('matches').insert(item).select().single();if(error)throw error;showNotice('createMessage','Pertandingan berhasil dipublikasikan!',true);el('matchForm').reset();await loadMatches();showPage('matchesPage')}catch(err){showNotice('createMessage','Belum berhasil disimpan ke Supabase: '+err.message+' Pastikan kolom tabel dan policy INSERT mengizinkan akun login.',false)}finally{el('publishButton').disabled=false}});
+client.auth.getSession().then(({data})=>{if(data.session){currentUser=data.session.user;showApp()}else{el('welcome').classList.remove('hidden')}}).catch(e=>console.warn(e));
+client.auth.onAuthStateChange((_event,session)=>{if(session){currentUser=session.user;showApp()}});
 </script>
 </body>
 </html>
