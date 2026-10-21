@@ -80,7 +80,7 @@ const arashiSupabase = window.supabase.createClient(
 async function cekPertandinganArashi() {
   const { data, error } = await arashiSupabase
     .from('matches')
-    .select('id, team_name, sport_type, match_date, match_time, city')
+    .select('*')
     .eq('status', 'open')
     .order('match_date', { ascending: true });
 
@@ -89,7 +89,21 @@ async function cekPertandinganArashi() {
     return;
   }
 
-  console.log('Koneksi berhasil. Data pertandingan:', data);
+  const dataOnline = (data || []).map((m, index) => ({
+    id: m.id || index + 1,
+    type: m.sport_type || 'Futsal',
+    home: m.team_name,
+    away: 'Cari Lawan',
+    venue: m.location || '',
+    city: m.city || '',
+    date: m.match_date,
+    time: m.match_time,
+    contact: m.contact_whatsapp || '',
+    description: m.description || ''
+  }));
+
+  console.log('Pertandingan online:', dataOnline);
+  return dataOnline;
 }
 
 window.cekPertandinganArashi = cekPertandinganArashi;
