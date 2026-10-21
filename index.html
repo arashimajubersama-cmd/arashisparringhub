@@ -26,7 +26,15 @@
  <div class="brand"><div class="mark">A</div><div><b>ARASHI</b><small>SPARRINGHUB</small></div></div>
  <div class="panel" style="margin-top:25px"><h2 id="authTitle">Masuk Akun</h2><p class="muted" style="font-size:13px">Masuk untuk bergabung dengan komunitas sparring.</p>
  <div id="nameField" class="field"><label>Nama lengkap (untuk daftar)</label><input id="arashi-name" autocomplete="name" placeholder="Nama kamu"></div>
- <div class="field"><label>Email</label><input id="arashi-email" type="email" autocomplete="email" placeholder="nama@email.com"></div>
+ <div class="field">
+  <label>Jenis akun</label>
+  <select id="arashi-account-type">
+    <option value="team">⚽ Pemain / Tim</option>
+    <option value="field_owner">🏟️ Pemilik Lapangan</option>
+    <option value="organizer">🏆 Penyelenggara Turnamen</option>
+  </select>
+ </div>
+  <div class="field"><label>Email</label><input id="arashi-email" type="email" autocomplete="email" placeholder="nama@email.com"></div>
  <div class="field"><label>Kata sandi (minimal 6 karakter)</label><input id="arashi-password" type="password" minlength="6" autocomplete="current-password" placeholder="Masukkan kata sandi"></div>
  <button id="arashi-register" class="btn primary full" onclick="registerAccount()">Daftar Akun</button>
  <button id="arashi-login" class="btn full" style="margin-top:9px" onclick="loginAccount()">Masuk</button>
@@ -107,8 +115,58 @@ function showNotice(id,text,ok){const n=el(id);n.textContent=text;n.className='n
 function showWelcome(){el('authScreen').classList.add('hidden');el('welcome').classList.remove('hidden')}
 function showAuth(mode){el('welcome').classList.add('hidden');el('authScreen').classList.remove('hidden');el('authTitle').textContent=mode==='register'?'Daftar Akun':'Masuk Akun';el('nameField').classList.toggle('hidden',mode!=='register');el('arashi-register').classList.toggle('hidden',mode!=='register');el('arashi-login').classList.toggle('hidden',mode==='register');el('authMessage').textContent=''}
 function showApp(){el('welcome').classList.add('hidden');el('authScreen').classList.add('hidden');el('bottomNav').classList.remove('hidden');showPage('homePage');el('profileEmail').textContent=currentUser?.email||'';el('profileName').textContent=currentUser?.user_metadata?.full_name||'Pemain ARASHI';loadMatches()}
-function showPage(id,button){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'})}
-async function registerAccount(){const name=el('arashi-name').value.trim(),email=el('arashi-email').value.trim(),password=el('arashi-password').value;if(!name||!email||password.length<6){showNotice('authMessage','Isi nama, email, dan kata sandi minimal 6 karakter.',false);return}el('arashi-register').disabled=true;try{const {data,error}=await client.auth.signUp({email,password,options:{data:{full_name:name},emailRedirectTo:location.origin+location.pathname}});if(error)throw error;if(data.session){currentUser=data.user;showApp();}else showNotice('authMessage','Pendaftaran diterima. Periksa email untuk konfirmasi sebelum login.',true)}catch(e){showNotice('authMessage','Pendaftaran gagal: '+e.message,false)}finally{el('arashi-register').disabled=false}}
+function showPage(id,button){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'})}async function registerAccount(){
+  const name = el('arashi-name').value.trim();
+  const email = el('arashi-email').value.trim();
+  const password = el('arashi-password').value;
+  const accountType = el('arashi-account-type').value;
+
+  if (!name || !email || password.length < 6) {
+    showNotice(
+      'authMessage',
+      'Isi nama, email, dan kata sandi minimal 6 karakter.',
+      false
+    );
+    return;
+  }
+
+  el('arashi-register').disabled = true;
+
+  try {
+    const { data, error } = await client.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: name,
+          account_type: accountType
+        },
+        emailRedirectTo: location.origin + location.pathname
+      }
+    });
+
+    if (error) throw error;
+
+    if (data.session) {
+      currentUser = data.user;
+      showApp();
+    } else {
+      showNotice(
+        'authMessage',
+        'Pendaftaran diterima. Periksa email untuk konfirmasi sebelum login.',
+        true
+      );
+    }
+  } catch (e) {
+    showNotice(
+      'authMessage',
+      'Pendaftaran gagal: ' + e.message,
+      false
+    );
+  } finally {
+    el('arashi-register').disabled = false;
+  }
+}
 async function loginAccount(){const email=el('arashi-email').value.trim(),password=el('arashi-password').value;if(!email||!password){showNotice('authMessage','Isi email dan kata sandi terlebih dahulu.',false);return}el('arashi-login').disabled=true;try{const {data,error}=await client.auth.signInWithPassword({email,password});if(error)throw error;currentUser=data.user;showApp()}catch(e){showNotice('authMessage','Login gagal: '+e.message,false)}finally{el('arashi-login').disabled=false}}
 async function signOut(){const {error}=await client.auth.signOut();if(error){showNotice('profileMessage','Logout gagal: '+error.message,false);return}currentUser=null;el('bottomNav').classList.add('hidden');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));el('welcome').classList.remove('hidden')}
 function setCategory(c,button){category=c;document.querySelectorAll('.cat').forEach(b=>b.classList.toggle('active',b.dataset.category===c));renderMatches()}
