@@ -371,6 +371,86 @@ function challengeMatch(id){const m=matches.find(x=>String(x.id)===String(id));i
 el('matchForm').addEventListener('submit',async e=>{e.preventDefault();if(!currentUser){showNotice('createMessage','Silakan login terlebih dahulu.',false);return}const item={sport_type:el('matchType').value,team_name:el('teamName').value.trim(),location:el('matchLocation').value.trim(),city:el('matchCity').value.trim(),match_date:el('matchDate').value,match_time:el('matchTime').value,contact_whatsapp:el('matchContact').value.trim(),description:(el('matchDescription').value.trim()+' | Format: '+el('matchFormat').value).trim(),status:'open',created_by:currentUser.id};el('publishButton').disabled=true;try{const {data,error}=await client.from('matches').insert(item).select().single();if(error)throw error;showNotice('createMessage','Pertandingan berhasil dipublikasikan!',true);el('matchForm').reset();await loadMatches();showPage('matchesPage')}catch(err){showNotice('createMessage','Belum berhasil disimpan ke Supabase: '+err.message+' Pastikan kolom tabel dan policy INSERT mengizinkan akun login.',false)}finally{el('publishButton').disabled=false}});
 client.auth.getSession().then(({data})=>{if(data.session){currentUser=data.session.user;showApp()}else{el('welcome').classList.remove('hidden')}}).catch(e=>console.warn(e));
 client.auth.onAuthStateChange((_event,session)=>{if(session){currentUser=session.user;showApp()}});
+async function loadAdminFields() {
+  if (currentUser?.email !== 'arashimajubersama@gmail.com') {
+    showNotice('adminFieldsMessage', 'Akses ditolak.', false);
+    return;
+  }
+
+  const list = el('adminFieldsList');
+  list.textContent = 'Memuat daftar lapangan...';
+
+  try {
+    const { data, error } = await client.rpc('admin_list_fields');
+
+    if (error) throw error;
+
+    list.replaceChildren();
+
+    if (!data || data.length === 0) {
+      list.textContent = 'Belum ada pendaftaran lapangan.';
+      return;
+    }
+
+    data.forEach(field => {
+      const card = document.createElement('div');
+      card.className = 'panel';
+
+      const title = document.createElement('h3');
+      title.textContent = field.field_name;
+
+      const details = document.createElement('p');
+      details.textContent =
+        field.address + ' • ' + field.district + ' • ' +
+        field.city + ' • Status: ' + field.verification_status;
+
+      card.append(title, details);
+
+      if (field.verification_status === 'pending') {
+        const approve = document.createElement('button');
+        approve.className = 'btn';
+        approve.textContent = '✅ Verifikasi';
+        approve.onclick = () => setAdminFieldStatus(field.id, 'verified');
+
+        const reject = document.createElement('button');
+        reject.className = 'btn';
+        reject.textContent = '❌ Tolak';
+        reject.onclick = () => setAdminFieldStatus(field.id, 'rejected');
+
+        card.append(approve, reject);
+      }
+
+      list.append(card);
+    });
+  } catch (error) {
+    list.textContent = 'Gagal memuat daftar: ' + error.message;
+  }
+}
+
+async function setAdminFieldStatus(fieldId, status) {
+  if (currentUser?.email !== 'arashimajubersama@gmail.com') {
+    alert('Akses ditolak.');
+    return;
+  }
+
+  const action = status === 'verified' ? 'memverifikasi' : 'menolak';
+
+  if (!confirm('Yakin ingin ' + action + ' lapangan ini?')) return;
+
+  try {
+    const { error } = await client.rpc('admin_set_field_status', {
+      p_field_id: fieldId,
+      p_status: status
+    });
+
+    if (error) throw error;
+
+    alert('Status lapangan berhasil diperbarui.');
+    await loadAdminFields();
+  } catch (error) {
+    alert('Gagal mengubah status: ' + error.message);
+  }
+ }
 </script>
 </body>
 </html>
