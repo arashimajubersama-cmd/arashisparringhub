@@ -154,6 +154,26 @@
     <div id="fieldMessage" class="notice"></div>
   </div>
  </section>
+ <section id="adminPage" class="page">
+  <div class="section-head">
+    <h2>🛡️ Admin ARASHI</h2>
+    <p class="muted">Kelola pendaftaran lapangan futsal dan mini soccer.</p>
+  </div>
+
+  <div class="panel">
+    <h3>📋 Pendaftaran Lapangan</h3>
+    <p class="muted">
+      Periksa data lapangan sebelum menyetujuinya.
+    </p>
+
+    <button class="btn full" onclick="loadAdminFields()">
+      🔄 Muat Daftar Lapangan
+    </button>
+
+    <div id="adminFieldsMessage" class="notice"></div>
+    <div id="adminFieldsList"></div>
+  </div>
+</section>
 </div>
 <nav id="bottomNav" class="bottomnav hidden">
  <button class="navbtn active" data-page="homePage" onclick="showPage('homePage',this)"><span>⌂</span>Beranda</button>
