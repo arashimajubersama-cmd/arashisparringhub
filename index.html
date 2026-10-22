@@ -220,9 +220,25 @@ function showApp(){
       : currentUser?.user_metadata?.account_type === 'organizer'
       ? '🏆 Penyelenggara Turnamen'
       : currentUser?.user_metadata?.full_name || 'Pemain ARASHI');
+ }
 
-function showPage(id,button){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'})}async function registerAccount(){
-  const name = el('arashi-name').value.trim();
+function showPage(id, button) {
+document.querySelectorAll('.page').forEach(p =>
+p.classList.toggle('active', p.id === id)
+);
+
+document.querySelectorAll('.navbtn').forEach(b =>
+b.classList.toggle('active', b.dataset.page === id)
+);
+
+window.scrollTo({ top: 0, behavior: 'smooth' });
+
+if (id === 'fieldsPage') {
+loadVerifiedFields();
+}
+}
+
+async function registerAccount() { const name = el('arashi-name').value.trim();
   const email = el('arashi-email').value.trim();
   const password = el('arashi-password').value;
   const accountType = el('arashi-account-type').value;
