@@ -182,6 +182,9 @@
  <button class="navbtn" data-page="messagesPage" onclick="showPage('messagesPage',this)"><span>☏</span>Pesan</button>
  <button class="navbtn" data-page="fieldsPage" onclick="showPage('fieldsPage',this)"><span>🏟️</span>Lapangan</button>
  <button class="navbtn" data-page="profilePage" onclick="showPage('profilePage',this)"><span>♙</span>Profil</button>
+<button class="navbtn" data-page="adminPage" onclick="showPage('adminPage',this)" id="adminNavBtn" style="display:none">
+  <span>🛡️</span>Admin
+</button>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -203,7 +206,11 @@ function showApp(){
   el('welcome').classList.add('hidden');
   el('authScreen').classList.add('hidden');
   el('bottomNav').classList.remove('hidden');
-  showPage('homePage');
+  el('adminNavBtn').style.display =
+  currentUser?.email === 'arashimajubersama@gmail.com'
+    ? ''
+    : 'none';
+ showPage('homePage');
 
   el('profileEmail').textContent = currentUser?.email || '';
 
