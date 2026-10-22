@@ -179,12 +179,21 @@ function el(id){return document.getElementById(id)}
 function showNotice(id,text,ok){const n=el(id);n.textContent=text;n.className='notice '+(ok?'ok':'bad')}
 function showWelcome(){el('authScreen').classList.add('hidden');el('welcome').classList.remove('hidden')}
 function showAuth(mode){el('welcome').classList.add('hidden');el('authScreen').classList.remove('hidden');el('authTitle').textContent=mode==='register'?'Daftar Akun':'Masuk Akun';el('nameField').classList.toggle('hidden',mode!=='register');el('arashi-register').classList.toggle('hidden',mode!=='register');el('arashi-login').classList.toggle('hidden',mode==='register');el('authMessage').textContent=''}
-function showApp(){el('welcome').classList.add('hidden');el('authScreen').classList.add('hidden');el('bottomNav').classList.remove('hidden');showPage('homePage');el('profileEmail').textContent=currentUser?.email||'';el('profileName').textContent =
-  (currentUser?.user_metadata?.account_type === 'field_owner'
-    ? '🏟️ Pemilik Lapangan'
-    : currentUser?.user_metadata?.account_type === 'organizer'
-    ? '🏆 Penyelenggara Turnamen'
-    : currentUser?.user_metadata?.full_name || 'Pemain ARASHI');
+function showApp(){
+  el('welcome').classList.add('hidden');
+  el('authScreen').classList.add('hidden');
+  el('bottomNav').classList.remove('hidden');
+  showPage('homePage');
+
+  el('profileEmail').textContent = currentUser?.email || '';
+
+  el('profileName').textContent =
+    (currentUser?.user_metadata?.account_type === 'field_owner'
+      ? '🏟️ Pemilik Lapangan'
+      : currentUser?.user_metadata?.account_type === 'organizer'
+      ? '🏆 Penyelenggara Turnamen'
+      : currentUser?.user_metadata?.full_name || 'Pemain ARASHI');
+}
 function showPage(id,button){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'})}async function registerAccount(){
   const name = el('arashi-name').value.trim();
   const email = el('arashi-email').value.trim();
