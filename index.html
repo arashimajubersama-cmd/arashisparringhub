@@ -237,6 +237,92 @@ function showPage(id,button){document.querySelectorAll('.page').forEach(p=>p.cla
     el('arashi-register').disabled = false;
   }
 }
+async function registerField() {
+  if (!currentUser) {
+    showNotice('fieldMessage', 'Silakan login terlebih dahulu.', false);
+    return;
+  }
+
+  if (currentUser.user_metadata?.account_type !== 'field_owner') {
+    showNotice(
+      'fieldMessage',
+      'Fitur ini khusus untuk akun Pemilik Lapangan.',
+      false
+    );
+    return;
+  }
+
+  const fieldName = el('fieldName').value.trim();
+  const address = el('fieldAddress').value.trim();
+  const village = el('fieldVillage').value.trim();
+  const district = el('fieldDistrict').value.trim();
+  const city = el('fieldCity').value.trim();
+  const whatsapp = el('fieldWhatsapp').value.trim();
+  const price = Number(el('fieldPrice').value);
+  const fieldType = el('fieldType').value;
+  const facilities = el('fieldFacilities').value
+    .split(',')
+    .map(item => item.trim())
+    .filter(Boolean);
+
+  if (
+    !fieldName || !address || !village || !district ||
+    !city || !whatsapp || el('fieldPrice').value === '' ||
+    !Number.isFinite(price) || price < 0
+  ) {
+    showNotice(
+      'fieldMessage',
+      'Lengkapi semua kolom dan pastikan harga tidak negatif.',
+      false
+    );
+    return;
+  }
+
+  try {
+    const { error } = await client
+      .from('fields')
+      .insert({
+        owner_id: currentUser.id,
+        field_name: fieldName,
+        address,
+        village,
+        district,
+        city,
+        whatsapp,
+        price_per_hour: price,
+        field_type: fieldType,
+        facilities,
+        verification_status: 'pending'
+      });
+
+    if (error) throw error;
+
+    showNotice(
+      'fieldMessage',
+      'Pendaftaran berhasil dikirim! Lapangan menunggu verifikasi admin.',
+      true
+    );
+
+    [
+      'fieldName',
+      'fieldAddress',
+      'fieldVillage',
+      'fieldDistrict',
+      'fieldWhatsapp',
+      'fieldPrice',
+      'fieldFacilities'
+    ].forEach(id => {
+      el(id).value = '';
+    });
+  } catch (error) {
+    console.error('Pendaftaran lapangan gagal:', error);
+    showNotice(
+      'fieldMessage',
+      'Pendaftaran gagal: ' + error.message,
+      false
+    );
+  }
+ }
 async function loginAccount(){const email=el('arashi-email').value.trim(),password=el('arashi-password').value;if(!email||!password){showNotice('authMessage','Isi email dan kata sandi terlebih dahulu.',false);return}el('arashi-login').disabled=true;try{const {data,error}=await client.auth.signInWithPassword({email,password});if(error)throw error;currentUser=data.user;showApp()}catch(e){showNotice('authMessage','Login gagal: '+e.message,false)}finally{el('arashi-login').disabled=false}}
 async function signOut(){const {error}=await client.auth.signOut();if(error){showNotice('profileMessage','Logout gagal: '+error.message,false);return}currentUser=null;el('bottomNav').classList.add('hidden');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));el('welcome').classList.remove('hidden')}
 function setCategory(c,button){category=c;document.querySelectorAll('.cat').forEach(b=>b.classList.toggle('active',b.dataset.category===c));renderMatches()}
