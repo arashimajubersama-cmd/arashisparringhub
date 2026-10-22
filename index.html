@@ -90,6 +90,70 @@
  <div class="panel"><div class="profilehead"><div class="avatar">👤</div><div><b id="profileName">Pemain ARASHI</b><div id="profileEmail" class="muted" style="font-size:12px">Akun belum dimuat</div></div></div><button class="btn full" style="margin-top:16px" onclick="signOut()">Keluar dari akun</button><div id="profileMessage" class="notice"></div></div>
  <div class="panel"><div class="listrow"><span>Tim Saya</span><button class="textbtn" onclick="showPage('teamsPage')">Buka →</button></div><div class="listrow"><span>Pertandingan Saya</span><button class="textbtn" onclick="showPage('matchesPage')">Buka →</button></div><div class="listrow"><span>Tentang ARASHI SparringHub</span><span>›</span></div></div>
 </section>
+ <section id="fieldsPage" class="page">
+  <div class="sectionhead">
+    <h2>🏟️ Lapangan</h2>
+    <p class="muted">Daftarkan lapangan futsal atau mini soccer kamu.</p>
+  </div>
+
+  <div class="panel">
+    <h3>Daftarkan Lapangan</h3>
+
+    <div class="field">
+      <label>Nama Lapangan</label>
+      <input id="fieldName" type="text" placeholder="Contoh: Futsal Arena">
+    </div>
+
+    <div class="field">
+      <label>Alamat Lengkap</label>
+      <textarea id="fieldAddress" placeholder="Masukkan alamat lapangan"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Desa / Kelurahan</label>
+      <input id="fieldVillage" type="text" placeholder="Nama desa atau kelurahan">
+    </div>
+
+    <div class="field">
+      <label>Kecamatan</label>
+      <input id="fieldDistrict" type="text" placeholder="Nama kecamatan">
+    </div>
+
+    <div class="field">
+      <label>Kabupaten / Kota</label>
+      <input id="fieldCity" type="text" value="Kabupaten Bekasi">
+    </div>
+
+    <div class="field">
+      <label>Nomor WhatsApp</label>
+      <input id="fieldWhatsapp" type="tel" placeholder="08xxxxxxxxxx">
+    </div>
+
+    <div class="field">
+      <label>Harga Sewa per Jam (Rp)</label>
+      <input id="fieldPrice" type="number" min="0" placeholder="Contoh: 150000">
+    </div>
+
+    <div class="field">
+      <label>Jenis Lapangan</label>
+      <select id="fieldType">
+        <option value="Futsal">Futsal</option>
+        <option value="Mini Soccer">Mini Soccer</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Fasilitas</label>
+      <input id="fieldFacilities" type="text" placeholder="Contoh: parkir, toilet, musala">
+    </div>
+
+    <button class="btn full" onclick="registerField()">
+      Daftarkan Lapangan
+    </button>
+
+    <div id="fieldMessage" class="notice"></div>
+  </div>
+ </section>
 </div>
 <nav id="bottomNav" class="bottomnav hidden">
  <button class="navbtn active" data-page="homePage" onclick="showPage('homePage',this)"><span>⌂</span>Beranda</button>
